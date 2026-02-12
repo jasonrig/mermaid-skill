@@ -13,7 +13,6 @@ Examples:
 
 Notes:
   - Uses: npx -y -p @mermaid-js/mermaid-cli mmdc
-  - Sets npm cache via MERMAID_NPM_CACHE (default: /tmp/mermaid-npm-cache)
 USAGE
 }
 
@@ -41,7 +40,7 @@ if [[ "$input_path" != "-" && ! -f "$input_path" ]]; then
   exit 1
 fi
 
-cache_dir="${MERMAID_NPM_CACHE:-/tmp/mermaid-npm-cache}"
+cache_dir="${TMPDIR:-/tmp}/mermaid-npm-cache"
 mkdir -p "$cache_dir"
 
 default_theme="${MERMAID_THEME:-neutral}"

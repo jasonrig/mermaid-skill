@@ -12,8 +12,8 @@ description: Create and refine well-designed Mermaid diagrams (flowcharts, seque
 3. Draft structure first (groups, phases, boundaries, and decision points), then labels.
 4. For exact grammar or parser-edge syntax, consult `references/syntax/` first.
 5. Apply design rules from `references/mermaid-design-guide.md`.
-6. Render with `scripts/render_mermaid.sh` and fix parser or layout issues. This helper script must be executed outside the sandbox.
-7. Render-validation is mandatory: render every diagram at least once to confirm Mermaid syntax is valid. If a final artifact is not needed, render to a temporary output path, confirm success, then clean up temporary files.
+6. Run mandatory render-validation with `scripts/dry_run_mermaid.sh` to confirm Mermaid syntax and basic layout.
+7. If a final artifact is requested, render with `scripts/render_mermaid.sh` and fix parser or layout issues.
 8. Iterate until crossings, spacing, and labels are readable at a glance.
 
 ## Diagram Selection
@@ -71,9 +71,8 @@ Use `references/syntax/` as the syntax source of truth whenever exact Mermaid gr
 
 ## Sandbox requirement:
 
-- Execute `render_mermaid.sh` outside the sandbox (use escalated permissions).
+- Execute `dry_run_mermaid.sh` and `render_mermaid.sh` outside the sandbox (use escalated permissions).
 - Use `npx -y` to avoid interactive install prompts.
-- Set `MERMAID_NPM_CACHE=/tmp/mermaid-npm-cache` to avoid npm cache or log permission issues.
 
 ## Mermaid CLI Quick Reference
 
@@ -92,6 +91,6 @@ Read full help output in `references/mmdc-help.txt`.
 
 - Return Mermaid source and a short rationale for key design choices.
 - Preserve stable node IDs across revisions when possible.
-- Render each diagram at least once (including temp renders) to validate syntax before finalizing.
-- Clean up temporary render outputs created only for validation.
+- Run `scripts/dry_run_mermaid.sh` at least once per diagram before finalizing.
+- If a final artifact is requested, render it with `scripts/render_mermaid.sh` after dry-run validation.
 - If compilation fails, report the exact parser error and the corrected snippet.
