@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mermaid Diagram Designer"
+  short_description: "Design, refine, and render high-quality Mermaid diagrams."
+  default_prompt: "Design a clear Mermaid diagram for the request, optimize layout and styling, and compile it with Mermaid CLI to verify output."
