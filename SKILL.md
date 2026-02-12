@@ -12,7 +12,7 @@ description: Create and refine well-designed Mermaid diagrams (flowcharts, seque
 3. Draft structure first (groups, phases, boundaries, and decision points), then labels.
 4. For exact grammar or parser-edge syntax, consult `references/syntax/` first.
 5. Apply design rules from `references/mermaid-design-guide.md`.
-6. Render with `/Users/jason/.codex/skills/design-mermaid-diagrams/scripts/render_mermaid.sh` (or from the skill directory as `./scripts/render_mermaid.sh`) and fix parser or layout issues. This helper script must be executed outside the sandbox.
+6. Render with `scripts/render_mermaid.sh` and fix parser or layout issues. This helper script must be executed outside the sandbox.
 7. Render-validation is mandatory: render every diagram at least once to confirm Mermaid syntax is valid. If a final artifact is not needed, render to a temporary output path, confirm success, then clean up temporary files.
 8. Iterate until crossings, spacing, and labels are readable at a glance.
 
@@ -69,21 +69,7 @@ Use `references/syntax/` as the syntax source of truth whenever exact Mermaid gr
 - Use `classDef` styles intentionally with a limited palette (2 to 4 semantic colors).
 - Add legends only when colors or line styles encode meaning.
 
-## Rendering Commands
-
-Use this verified CLI invocation for help:
-
-```bash
-npx -y -p @mermaid-js/mermaid-cli mmdc -h
-```
-
-Use the helper script for rendering (must be run outside sandbox):
-
-```bash
-/Users/jason/.codex/skills/design-mermaid-diagrams/scripts/render_mermaid.sh diagram.mmd diagram.svg --theme neutral --width 1400
-```
-
-Sandbox requirement:
+## Sandbox requirement:
 
 - Execute `render_mermaid.sh` outside the sandbox (use escalated permissions).
 - Use `npx -y` to avoid interactive install prompts.
